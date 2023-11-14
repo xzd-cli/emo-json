@@ -1,5 +1,5 @@
 {
-  "name": "emo-json",
+  "name": "emo-json-server",
   "version": "0.0.1",
   "description": "mock json with REST api and websocket",
   "main": "./lib/server/index.js",

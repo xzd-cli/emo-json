@@ -1,11 +1,9 @@
-<!-- tocstop -->
-
 ## Getting started
 
 Install JSON Server 
 
 ```
-npm install -g json-server
+npm install -g emo-json-server
 ```
 
 Create a `db.json` file with some data
@@ -99,7 +97,7 @@ PATCH  /profile
 Use `.` to access deep properties
 
 ```
-GET /posts?title=json-server&author=typicode
+GET /posts?title=server&author=typicode
 GET /posts?id=1&id=2
 GET /comments?author.name=typicode
 ```
