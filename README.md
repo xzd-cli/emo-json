@@ -294,7 +294,7 @@ Examples:
 可通过配置修改的变量
 emo c ls 展示配置
 emo c set key value 修改变量配置
-
+```
 {
   res: '{"code": 0, "data": null}', // 等同于result: '{"code": 0, "data": null}'
   q: 'q',
@@ -309,3 +309,4 @@ emo c set key value 修改变量配置
   listKey: "list",
   totaKey: "total"
 }
+```
