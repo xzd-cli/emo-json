@@ -26,7 +26,35 @@ Start JSON Server
 
 ```bash
 emo --watch db.json
-emo db.json --ws // 开启websocket
+```
+
+Start websocket server
+
+```bash
+ emo db.json --ws 
+```
+
+```
+  const ws = new WebSocket('ws://localhost:4000/io')
+  ws.onopen = function(evt) { 
+    console.log("Connection open ..."); 
+    ws.send("Hello WebSockets!");
+  };
+
+  ws.onmessage = function(evt) {
+    console.log( "Received Message: " + evt.data);
+    // ws.close();
+  };
+
+  ws.onclose = function(evt) {
+    console.log("Connection closed.");
+  }; 
+
+  const handleSend = () => { // quick feedback
+    ws.send(JSON.stringify({
+      userResponse: 'FEEDBACK'
+    }));
+  }
 ```
 
 Now if you go to [http://localhost:3000/posts/1](http://localhost:3000/posts/1), you'll get
@@ -183,68 +211,6 @@ GET /
 ```
 
 ## Extras
-
-### Static file server
-
-You can use JSON Server to serve your HTML, JS and CSS, simply create a `./public` directory
-or use `--static` to set a different static files directory.
-
-```bash
-mkdir public
-echo 'hello world' > public/index.html
-emo db.json
-```
-
-```bash
-emo db.json --static ./some-other-dir
-```
-
-### Alternative port
-
-You can start JSON Server on other ports with the `--port` flag:
-
-```bash
-$ emo --watch db.json --port 3004
-```
-
-### Access from anywhere
-
-You can access your fake API from anywhere using CORS and JSONP.
-
-### Remote schema
-
-You can load remote schemas.
-
-```bash
-$ emo http://example.com/file.json
-$ emo http://jsonplaceholder.typicode.com/db
-```
-
-### Generate random data
-
-Using JS instead of a JSON file, you can create data programmatically.
-
-```javascript
-// index.js
-module.exports = () => {
-  const data = { users: [] }
-  // Create 1000 users
-  for (let i = 0; i < 1000; i++) {
-    data.users.push({ id: i, name: `user${i}` })
-  }
-  return data
-}
-```
-
-```bash
-$ emo index.js
-```
-
-__Tip__ use modules like [Faker](https://github.com/faker-js/faker), [Casual](https://github.com/boo1ean/casual), [Chance](https://github.com/victorquinn/chancejs) or [JSON Schema Faker](https://github.com/json-schema-faker/json-schema-faker).
-
-### HTTPS
-
-There are many ways to set up SSL in development. One simple way is to use [hotel](https://github.com/typicode/hotel).
 
 ### Add custom routes
 
